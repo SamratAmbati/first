@@ -9,13 +9,13 @@ git 'url'
 stage('Build'){
 steps{
 echo 'Building the project...'
-sh 'javac HelloWorld.java'
+sh 'javac helloworld.java'
 }
 }
 stage('Test'){
 steps{
 echo 'Running tests...'
-sh 'java HelloWorld'
+sh 'java helloworld'
 }
 }
 stage('Deploy'){
