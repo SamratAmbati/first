@@ -1,36 +1,46 @@
-pipeline{
-  agent any{
-    stages{
-      stage('clone'){
-        steps{
-          git 'https://github.com/SamratAmbati/first.git'
+pipeline {
+    agent any  // Defines the environment where the pipeline runs
+
+    stages {
+
+stage('clone') {  // Stage for building your project
+            steps {
+                // echo 'Building the project...'
+                git 'https://github.com/SamratAmbati/first.git'
+                // Add build commands here (e.g., mvn, npm, etc.)
+            }
         }
-      }
-      stage('Build'){
-        steps{
-          echo 'Building the project...'
-          sh 'javac helloworld.java'
+               
+stage('Build') {  // Stage for building your project
+            steps {
+                echo 'Building the project...'
+                sh 'javac helloworld.java'
+                // Add build commands here (e.g., mvn, npm, etc.)
+            }
         }
-      }
-      stage('Test'){
-        steps{
-          echo 'Running tests...'
-          sh 'java helloworld'
+       
+        stage('Test') {  // Stage for testing the project
+            steps {
+                echo 'Running tests...'
+            sh  'java helloworld'
+                // Add test commands here (e.g., mvn test, npm test, etc.)
+            }
         }
-      }
-      stage('Deploy'){
-        steps{
-          echo 'Deploying the project...'
+       
+        stage('Deploy') {  // Stage for deploying your project
+            steps {
+                echo 'Deploying the project...'
+                // Add deployment commands here
+            }
         }
-      }
     }
-    post{
-      success{
-        echo 'pipeline completed succesfully'
-      }
-      failure{
-        echo 'pipeline failed.'
-      }
+   
+    post {
+        success {
+            echo 'Pipeline completed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed.'
+        }
     }
-  }
 }
